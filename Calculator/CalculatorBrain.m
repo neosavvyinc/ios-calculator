@@ -49,12 +49,27 @@
         if(divisor) result = [self popOperand] / divisor;
     }
     else if ([@"-" isEqualToString:operation]) {
-        result = [self popOperand] - [self popOperand];
+        double subtractor = [self popOperand];
+        result = [self popOperand] - subtractor;
+    }
+    else if ([@"sin" isEqualToString:operation]) {
+        result = sin([self popOperand]); 
+    }
+    else if ([@"cos" isEqualToString:operation]) {
+        result = cos([self popOperand]); 
+    }
+    else if ([@"sqrt" isEqualToString:operation]) {
+        result = sqrt([self popOperand]); 
     }
     
     [self pushOperand:result];
     
     return result;
+}
+
+-(void)clear
+{
+    [self setOperandStack:[[NSMutableArray alloc] init]];
 }
 
 @end

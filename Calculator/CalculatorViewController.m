@@ -29,6 +29,11 @@
 - (IBAction)digitPressed:(UIButton *)sender 
 {
     NSString *digit = sender.currentTitle;
+    
+    /**
+     * Disallow multiple decimal values from being passed into
+     * the digitPressed method
+     */
     NSRange rangeOfDecimalInDisplay = [self.display.text rangeOfString:@"."];
     NSRange rangeOfDecimalInDigit = [digit rangeOfString:@"."];
     if( rangeOfDecimalInDisplay.location != NSNotFound &&
@@ -40,6 +45,12 @@
     if( self.userIsInTheMiddleOfEnteringANumber )
     {
         self.display.text = [self.display.text stringByAppendingString:digit];
+    }
+    else if( rangeOfDecimalInDigit.location != NSNotFound 
+            && self.userIsInTheMiddleOfEnteringANumber == NO )
+    {
+        self.display.text = [self.display.text stringByAppendingString:digit];
+        self.userIsInTheMiddleOfEnteringANumber = YES;
     }
     else
     {
@@ -61,6 +72,12 @@
     double result = [self.brain performOperation:sender.currentTitle];
     NSString *resultString = [NSString stringWithFormat:@"%g", result];
     self.display.text = resultString;
+}
+
+- (IBAction)clearPressed:(id)sender {
+    [self.brain clear];
+    self.display.text = @"0";
+    self.userIsInTheMiddleOfEnteringANumber = NO;
 }
 
 @end
