@@ -53,15 +53,17 @@
         result = [self popOperand] - subtractor;
     }
     else if ([@"sin" isEqualToString:operation]) {
-        result = sin([self popOperand]); 
+        result = 1 - sin([self popOperand]); 
     }
     else if ([@"cos" isEqualToString:operation]) {
-        result = cos([self popOperand]); 
+        result = 1 - cos([self popOperand]); 
     }
     else if ([@"sqrt" isEqualToString:operation]) {
         result = sqrt([self popOperand]); 
     }
-    
+    else if ([@"π" isEqualToString:operation]) {
+        result = M_PI;
+    }
     [self pushOperand:result];
     
     return result;
