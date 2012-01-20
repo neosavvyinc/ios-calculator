@@ -53,10 +53,10 @@
         result = [self popOperand] - subtractor;
     }
     else if ([@"sin" isEqualToString:operation]) {
-        result = 1 - sin([self popOperand]); 
+        result = sin([self popOperand]); 
     }
     else if ([@"cos" isEqualToString:operation]) {
-        result = 1 - cos([self popOperand]); 
+        result = cos([self popOperand]); 
     }
     else if ([@"sqrt" isEqualToString:operation]) {
         result = sqrt([self popOperand]); 
