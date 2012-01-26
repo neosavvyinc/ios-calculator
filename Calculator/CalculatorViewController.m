@@ -136,19 +136,28 @@
     if( [@"Test 1" isEqualToString:testButtonTitlePressed] )
     {
         NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                              @"10", @"x", @"20",@"a", @"30", @"b", nil];
+                              [NSNumber numberWithDouble:10], @"x"
+                              ,[NSNumber numberWithDouble:20],@"a"
+                              ,[NSNumber numberWithDouble:30], @"b"
+                              ,nil];
         self.testVariables = dict;
     }
     else if( [@"Test 2" isEqualToString:testButtonTitlePressed] )
     {
         NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                              @"20", @"x", @"30",@"a", @"40", @"b", nil];
+                              [NSNumber numberWithDouble:20],@"x"
+                              ,[NSNumber numberWithDouble:30],@"a"
+                              ,[NSNumber numberWithDouble:40],@"b"
+                              ,nil];
         self.testVariables = dict;
     }
     else if( [@"Test 3" isEqualToString:testButtonTitlePressed] )
     {
         NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                              @"30", @"x", @"40",@"a", @"50", @"b", nil];
+                              [NSNumber numberWithDouble:30], @"x"
+                              ,[NSNumber numberWithDouble:40],@"a"
+                              ,[NSNumber numberWithDouble:50], @"b"
+                              ,nil];
         self.testVariables = dict;        
     }
     
@@ -158,7 +167,8 @@
                             ,@"b", [self.testVariables objectForKey:@"b"]
                                     ];
     [self.brain updateVariables:self.testVariables];
-    [self updateAfterExecutionForResult:[self.brain execute]];
+    double resultVal = [self.brain execute];
+    [self updateAfterExecutionForResult:resultVal];
 }
 
 - (void)viewDidUnload {

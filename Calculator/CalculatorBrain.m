@@ -81,7 +81,6 @@
 
     if([CalculatorBrain isOperation:topOfStack])
     {
-        NSLog(@"top of stack: %@",topOfStack);
         if([[self noOperandOperators] containsObject:topOfStack])
         {
             resultString = [NSString stringWithFormat:@"%@", topOfStack];
@@ -100,12 +99,10 @@
         }
     }
     else
-    {
-        NSLog(@"top of stack is %@", topOfStack);        
+    {        
         resultString = [NSString stringWithFormat:@"%@", topOfStack];
     }
     
-    NSLog(@"result string is about to be returned as %@", resultString);
     return resultString;
 
 }
@@ -147,7 +144,8 @@
     
     id topOfStack = [stack lastObject];
     if(topOfStack) [stack removeLastObject];
-    
+
+    NSLog(@"popOperandTopOfStack===%@", topOfStack);
     if( [topOfStack isKindOfClass:[NSNumber class]] )
     {
         result = [topOfStack doubleValue];
@@ -201,7 +199,25 @@
 + (double) runProgram:(id)program 
        usingVariables:(NSDictionary *)variableValues
 {
-    return 0;
+    NSMutableArray *stack;
+    
+    if( [program isKindOfClass:[NSArray class]] )
+    {
+        stack = [program mutableCopy];
+    }
+    
+    for (NSUInteger i = 0; i < [stack count]; i++) {
+        if( [[CalculatorBrain variablesUsedInProgram:stack] containsObject:[stack objectAtIndex:i]] )
+        {
+            id replacement = [variableValues objectForKey:[stack objectAtIndex:i]];
+            NSNumber *valueAsNumber = replacement;
+            if( valueAsNumber == nil ) valueAsNumber = 0;
+            
+            [stack replaceObjectAtIndex:i withObject:valueAsNumber];
+        }
+    }
+    
+    return [self popOperandOffStack:stack];
 }
 
 - (double)execute
