@@ -40,17 +40,6 @@
     return NO;
 }
 
-+ (BOOL) isSubtractionOrDivision:(NSString *)operation
-{
-    if( [@"/" isEqualToString:operation] || [@"-" isEqualToString:operation] )
-    {
-        return YES;
-    }
-    
-    return NO;
-    
-}
-
 
 -(NSMutableArray *) programStack
 {
@@ -105,15 +94,8 @@
             id op2 = [self descriptionOfTopOfStack:stack];
             
             NSString *operatorAsString = topOfStack;
+            resultString = [NSString stringWithFormat:@"( %@ %@ %@ )", op2,topOfStack,op1];
             
-            if( [self isSubtractionOrDivision:operatorAsString] )
-            {
-                resultString = [NSString stringWithFormat:@"( %@ %@ %@ )", op2,topOfStack,op1];
-            }
-            else
-            {
-                resultString = [NSString stringWithFormat:@"( %@ %@ %@ )", op1,topOfStack,op2];
-            }
         }
     }
     else
