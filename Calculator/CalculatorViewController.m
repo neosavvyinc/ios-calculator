@@ -18,6 +18,8 @@
 
 @synthesize display = _display;
 @synthesize historyDisplay = _historyDisplay;
+@synthesize variableDisplay = _variableDisplay;
+@synthesize infixDisplay = _infixDisplay;
 @synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
 @synthesize brain = _brain;
 
@@ -79,17 +81,37 @@
     self.display.text = resultString;
     self.historyDisplay.text = [self.historyDisplay.text stringByAppendingString:sender.currentTitle];
     self.historyDisplay.text = [self.historyDisplay.text stringByAppendingString:@" "];
+    self.infixDisplay.text = [CalculatorBrain descriptionOfProgram:self.brain.program];
+
 }
 
 - (IBAction)clearPressed:(id)sender {
     [self.brain clear];
     self.display.text = @"0";
     self.historyDisplay.text = @"";
+    self.infixDisplay.text = @"";
     self.userIsInTheMiddleOfEnteringANumber = NO;
+}
+
+- (IBAction)variablePressed:(UIButton *)sender {
+    
+    
+}
+
+- (IBAction)undoPressed:(UIButton *)sender {
+    
+    
+}
+
+- (IBAction)testPressed:(UIButton *)sender {
+    
+    
 }
 
 - (void)viewDidUnload {
     [self setHistoryDisplay:nil];
+    [self setVariableDisplay:nil];
+    [self setInfixDisplay:nil];
     [super viewDidUnload];
 }
 @end

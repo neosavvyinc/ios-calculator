@@ -16,6 +16,42 @@
 
 @synthesize  programStack = _programStack;
 
++(NSSet *) noOperandOperators
+{
+    return [NSSet setWithObjects:@"π", nil];;
+}
+
++(NSSet *) singleOperandOperators
+{
+    return [NSSet setWithObjects:@"sin",@"sqrt",@"cos", nil];
+}
+
++(NSSet *) twoOperandOperators
+{
+    return [NSSet setWithObjects:@"+",@"-",@"/",@"*", nil];
+}
+
++ (BOOL) isOperation:(id)objectFromProgram
+{
+    if( [objectFromProgram isKindOfClass:[NSString class]] )
+    {
+        return YES;
+    }
+    return NO;
+}
+
++ (BOOL) isSubtractionOrDivision:(NSString *)operation
+{
+    if( [@"/" isEqualToString:operation] || [@"-" isEqualToString:operation] )
+    {
+        return YES;
+    }
+    
+    return NO;
+    
+}
+
+
 -(NSMutableArray *) programStack
 {
     if( _programStack == nil) _programStack = [[NSMutableArray alloc] init];
@@ -33,14 +69,77 @@
     return [CalculatorBrain runProgram:self.program];
 }
 
+- (void)updateVariable: (NSString *)variable 
+             withValue:(NSString *)value
+{
+    
+}
+
 - (id) program
 {
     return [_programStack copy];
 }
 
++ (NSString *) descriptionOfTopOfStack:(NSMutableArray *)stack
+{
+    id topOfStack = [stack lastObject];
+    if(topOfStack) [stack removeLastObject];
+    
+    NSString *resultString;
+
+    if([CalculatorBrain isOperation:topOfStack])
+    {
+        NSLog(@"top of stack: %@",topOfStack);
+        if([[self noOperandOperators] containsObject:topOfStack])
+        {
+            resultString = [NSString stringWithFormat:@"%@", topOfStack];
+        }
+        else if([[self singleOperandOperators] containsObject:topOfStack])
+        {
+            id op1 = [self descriptionOfTopOfStack:stack];
+            resultString = [NSString stringWithFormat:@"%@(%@)", topOfStack, op1];
+        }
+        else if([[self twoOperandOperators] containsObject:topOfStack])
+        {
+            id op1 = [self descriptionOfTopOfStack:stack];
+            id op2 = [self descriptionOfTopOfStack:stack];
+            
+            NSString *operatorAsString = topOfStack;
+            
+            if( [self isSubtractionOrDivision:operatorAsString] )
+            {
+                resultString = [NSString stringWithFormat:@"( %@ %@ %@ )", op2,topOfStack,op1];
+            }
+            else
+            {
+                resultString = [NSString stringWithFormat:@"( %@ %@ %@ )", op1,topOfStack,op2];
+            }
+        }
+    }
+    else
+    {
+        resultString = [NSString stringWithFormat:@"%@", topOfStack];
+    }
+    
+    return resultString;
+
+}
+
 + (NSString *) descriptionOfProgram:(id)program
 {
-    return @"Implement this in assignment #2";
+    NSMutableArray *stack;
+    
+    if( [program isKindOfClass:[NSArray class]] )
+    {
+        stack = [program mutableCopy];
+    }
+    return [self descriptionOfTopOfStack:stack];    
+}
+
+
++ (NSSet *)variablesUsedInProgram:(id)program
+{
+    return nil;
 }
 
 + (double) popOperandOffStack:(NSMutableArray *)stack
@@ -97,6 +196,12 @@
         stack = [program mutableCopy];
     }
     return [self popOperandOffStack:stack];
+}
+
++ (double) runProgram:(id)program 
+       usingVariables:(NSDictionary *)variableValues
+{
+    return 0;
 }
 
 -(void)clear
