@@ -12,6 +12,7 @@
 @interface CalculatorViewController()
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
 @property (nonatomic, strong) CalculatorBrain *brain;
+@property (nonatomic, strong) NSDictionary *testVariables;
 @end
 
 @implementation CalculatorViewController
@@ -22,6 +23,14 @@
 @synthesize infixDisplay = _infixDisplay;
 @synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
 @synthesize brain = _brain;
+@synthesize testVariables = _testVariables;
+
+- (NSDictionary *) testVariables
+{
+    if(!_testVariables) _testVariables = [[NSMutableDictionary alloc] init];
+    
+    return _testVariables;
+}
 
 - (CalculatorBrain *) brain
 {
@@ -108,6 +117,7 @@
     self.display.text = @"0";
     self.historyDisplay.text = @"";
     self.infixDisplay.text = @"";
+    self.variableDisplay.text = @"";
     self.userIsInTheMiddleOfEnteringANumber = NO;
 }
 
@@ -117,8 +127,32 @@
 }
 
 - (IBAction)testPressed:(UIButton *)sender {
+    NSString *testButtonTitlePressed = sender.currentTitle;
     
+    if( [@"Test 1" isEqualToString:testButtonTitlePressed] )
+    {
+        NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              @"10", @"x", @"20",@"a", @"30", @"b", nil];
+        self.testVariables = dict;
+    }
+    else if( [@"Test 2" isEqualToString:testButtonTitlePressed] )
+    {
+        NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              @"20", @"x", @"30",@"a", @"40", @"b", nil];
+        self.testVariables = dict;
+    }
+    else if( [@"Test 3" isEqualToString:testButtonTitlePressed] )
+    {
+        NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              @"30", @"x", @"40",@"a", @"50", @"b", nil];
+        self.testVariables = dict;        
+    }
     
+    self.variableDisplay.text = [NSString stringWithFormat:@"%@=%@, %@=%@, %@=%@"
+                            ,@"x", [self.testVariables objectForKey:@"x"]
+                            ,@"a", [self.testVariables objectForKey:@"a"]                                    
+                            ,@"b", [self.testVariables objectForKey:@"b"]
+                                    ];
 }
 
 - (void)viewDidUnload {
