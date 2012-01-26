@@ -33,7 +33,9 @@
 
 + (BOOL) isOperation:(id)objectFromProgram
 {
-    if( [objectFromProgram isKindOfClass:[NSString class]] )
+    if( [[self noOperandOperators] containsObject:objectFromProgram]
+       || [[self singleOperandOperators] containsObject:objectFromProgram] 
+       || [[self twoOperandOperators] containsObject:objectFromProgram])
     {
         return YES;
     }
@@ -50,6 +52,11 @@
 - (void)pushOperand: (double)operand
 {
     [self.programStack addObject:[NSNumber numberWithDouble:operand]];
+}
+
+- (void)pushVariable: (NSString *)variable
+{
+    [self.programStack addObject:variable];
 }
 
 - (double)performOperation: (NSString *)operation
@@ -93,16 +100,16 @@
             id op1 = [self descriptionOfTopOfStack:stack];
             id op2 = [self descriptionOfTopOfStack:stack];
             
-            NSString *operatorAsString = topOfStack;
-            resultString = [NSString stringWithFormat:@"( %@ %@ %@ )", op2,topOfStack,op1];
-            
+            resultString = [NSString stringWithFormat:@"( %@ %@ %@ )", op2,topOfStack,op1];   
         }
     }
     else
     {
+        NSLog(@"top of stack is %@", topOfStack);        
         resultString = [NSString stringWithFormat:@"%@", topOfStack];
     }
     
+    NSLog(@"result string is about to be returned as %@", resultString);
     return resultString;
 
 }
@@ -136,7 +143,7 @@
         result = [topOfStack doubleValue];
     }
     else if ([topOfStack isKindOfClass:[NSString class]] )
-    {
+    {   
         NSString *operation = topOfStack;
         if([operation isEqualToString:@"+"]){
             result = [self popOperandOffStack:stack] + [self popOperandOffStack:stack];

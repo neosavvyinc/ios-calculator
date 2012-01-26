@@ -29,6 +29,29 @@
     return _brain;
 }
 
+- (void)updateDisplays
+{
+    self.userIsInTheMiddleOfEnteringANumber = NO;
+    
+    self.historyDisplay.text = [self.historyDisplay.text stringByAppendingString:self.display.text];
+    self.historyDisplay.text = [self.historyDisplay.text stringByAppendingString:@" "];
+}
+
+- (IBAction)enterPressed 
+{
+    if( [self.display.text isEqualToString:@"x"] 
+       || [self.display.text isEqualToString:@"a"] 
+       || [self.display.text isEqualToString:@"b"] )
+    {
+        [self.brain pushVariable:self.display.text];
+    }
+    else
+    {
+        [self.brain pushOperand:[self.display.text doubleValue]];
+    }
+    [self updateDisplays];
+}
+
 - (IBAction)digitPressed:(UIButton *)sender 
 {
     NSString *digit = sender.currentTitle;
@@ -55,21 +78,16 @@
         self.display.text = [self.display.text stringByAppendingString:digit];
         self.userIsInTheMiddleOfEnteringANumber = YES;
     }
+    else if( [digit isEqualToString:@"x"] || [digit isEqualToString:@"a"] || [digit isEqualToString:@"b"] )
+    {
+        self.display.text = digit;
+    }    
     else
     {
         self.display.text = digit;
         self.userIsInTheMiddleOfEnteringANumber = YES;
     }
     
-}
-
-- (IBAction)enterPressed 
-{
-    [self.brain pushOperand:[self.display.text doubleValue]];
-    self.userIsInTheMiddleOfEnteringANumber = NO;
-    
-    self.historyDisplay.text = [self.historyDisplay.text stringByAppendingString:self.display.text];
-    self.historyDisplay.text = [self.historyDisplay.text stringByAppendingString:@" "];
 }
 
 
@@ -91,11 +109,6 @@
     self.historyDisplay.text = @"";
     self.infixDisplay.text = @"";
     self.userIsInTheMiddleOfEnteringANumber = NO;
-}
-
-- (IBAction)variablePressed:(UIButton *)sender {
-    
-    
 }
 
 - (IBAction)undoPressed:(UIButton *)sender {
