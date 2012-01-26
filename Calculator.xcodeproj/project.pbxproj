@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8C0F632614D21D9000A4F967 /* AxesDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C0F632514D21D9000A4F967 /* AxesDrawer.m */; };
 		8C9D03CF14C7C4D000058351 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9D03CE14C7C4D000058351 /* UIKit.framework */; };
 		8C9D03D114C7C4D000058351 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9D03D014C7C4D000058351 /* Foundation.framework */; };
 		8C9D03D314C7C4D000058351 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C9D03D214C7C4D000058351 /* CoreGraphics.framework */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8C0F632414D21D9000A4F967 /* AxesDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxesDrawer.h; sourceTree = "<group>"; };
+		8C0F632514D21D9000A4F967 /* AxesDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxesDrawer.m; sourceTree = "<group>"; };
 		8C9D03CA14C7C4D000058351 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C9D03CE14C7C4D000058351 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8C9D03D014C7C4D000058351 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -85,6 +88,8 @@
 				8C9D03E014C7C4D000058351 /* MainStoryboard.storyboard */,
 				8C9D03E314C7C4D000058351 /* CalculatorViewController.h */,
 				8C9D03E414C7C4D000058351 /* CalculatorViewController.m */,
+				8C0F632414D21D9000A4F967 /* AxesDrawer.h */,
+				8C0F632514D21D9000A4F967 /* AxesDrawer.m */,
 				8C9D03D514C7C4D000058351 /* Supporting Files */,
 				8C9D03EB14C7C77D00058351 /* CalculatorBrain.h */,
 				8C9D03EC14C7C77D00058351 /* CalculatorBrain.m */,
@@ -170,6 +175,7 @@
 				8C9D03DF14C7C4D000058351 /* CalculatorAppDelegate.m in Sources */,
 				8C9D03E514C7C4D000058351 /* CalculatorViewController.m in Sources */,
 				8C9D03ED14C7C77D00058351 /* CalculatorBrain.m in Sources */,
+				8C0F632614D21D9000A4F967 /* AxesDrawer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +287,7 @@
 				8C9D03EA14C7C4D000058351 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
