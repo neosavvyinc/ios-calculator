@@ -10,11 +10,13 @@
 
 @interface CalculatorBrain()
 @property (nonatomic, strong) NSMutableArray *programStack;
+@property (nonatomic, strong) NSDictionary *variables;
 @end
 
 @implementation CalculatorBrain
 
 @synthesize  programStack = _programStack;
+@synthesize variables = _variables;
 
 +(NSSet *) noOperandOperators
 {
@@ -54,22 +56,16 @@
     [self.programStack addObject:[NSNumber numberWithDouble:operand]];
 }
 
+- (void)updateVariables: (NSDictionary *)variables
+{
+    self.variables = variables;
+}
+
 - (void)pushVariable: (NSString *)variable
 {
     [self.programStack addObject:variable];
 }
 
-- (double)performOperation: (NSString *)operation
-{
-    [self.programStack addObject:operation];
-    return [CalculatorBrain runProgram:self.program];
-}
-
-- (void)updateVariable: (NSString *)variable 
-             withValue:(NSString *)value
-{
-    
-}
 
 - (id) program
 {
@@ -128,7 +124,21 @@
 
 + (NSSet *)variablesUsedInProgram:(id)program
 {
-    return nil;
+    NSMutableArray *varArray = [[NSMutableArray alloc] init];
+    
+    for (id element in program)
+    {
+        if( [element isKindOfClass:[NSString class]] )
+        {
+            if( ![self isOperation:element] )
+            {
+                [varArray addObject:element];
+            }
+        }
+    }
+
+    NSSet *allVars = [[NSSet alloc] initWithArray:varArray];
+    return allVars;
 }
 
 + (double) popOperandOffStack:(NSMutableArray *)stack
@@ -185,6 +195,7 @@
         stack = [program mutableCopy];
     }
     return [self popOperandOffStack:stack];
+
 }
 
 + (double) runProgram:(id)program 
@@ -192,6 +203,26 @@
 {
     return 0;
 }
+
+- (double)execute
+{
+    if( [[CalculatorBrain variablesUsedInProgram:self.programStack] count] > 0 )
+    {
+        return [CalculatorBrain runProgram:self.program usingVariables:self.variables];
+    }
+    else
+    {
+        return [CalculatorBrain runProgram:self.program];
+    }
+}
+
+- (double)performOperation: (NSString *)operation
+{
+    [self.programStack addObject:operation];
+    
+    return [self execute];
+}
+
 
 -(void)clear
 {

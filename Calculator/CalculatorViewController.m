@@ -99,17 +99,21 @@
     
 }
 
+- (void) updateAfterExecutionForResult:(double) result
+{
+    NSString *resultString = [NSString stringWithFormat:@"%g", result];
+    self.display.text = resultString;
+    self.historyDisplay.text = [self.historyDisplay.text stringByAppendingString:@" "];
+    self.infixDisplay.text = [CalculatorBrain descriptionOfProgram:self.brain.program];
+
+}
 
 - (IBAction)operationPressed:(UIButton *)sender 
 {    
     if( self.userIsInTheMiddleOfEnteringANumber ) [self enterPressed];
     double result = [self.brain performOperation:sender.currentTitle];
-    NSString *resultString = [NSString stringWithFormat:@"%g", result];
-    self.display.text = resultString;
     self.historyDisplay.text = [self.historyDisplay.text stringByAppendingString:sender.currentTitle];
-    self.historyDisplay.text = [self.historyDisplay.text stringByAppendingString:@" "];
-    self.infixDisplay.text = [CalculatorBrain descriptionOfProgram:self.brain.program];
-
+    [self updateAfterExecutionForResult:result];
 }
 
 - (IBAction)clearPressed:(id)sender {
@@ -153,6 +157,8 @@
                             ,@"a", [self.testVariables objectForKey:@"a"]                                    
                             ,@"b", [self.testVariables objectForKey:@"b"]
                                     ];
+    [self.brain updateVariables:self.testVariables];
+    [self updateAfterExecutionForResult:[self.brain execute]];
 }
 
 - (void)viewDidUnload {

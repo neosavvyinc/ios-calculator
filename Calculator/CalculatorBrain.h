@@ -12,7 +12,9 @@
 
 - (void)pushOperand: (double)operand;
 - (void)pushVariable: (NSString *)variable;
+- (void)updateVariables: (NSDictionary *)variables;
 - (double)performOperation: (NSString *)operation;
+- (double)execute;
 - (void)clear;
 
 @property (readonly) id program;
