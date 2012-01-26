@@ -77,6 +77,11 @@
     id topOfStack = [stack lastObject];
     if(topOfStack) [stack removeLastObject];
     
+    if( !topOfStack )
+    {
+        topOfStack = [NSNumber numberWithDouble:0];
+    }
+    
     NSString *resultString;
 
     if([CalculatorBrain isOperation:topOfStack])
@@ -145,7 +150,6 @@
     id topOfStack = [stack lastObject];
     if(topOfStack) [stack removeLastObject];
 
-    NSLog(@"popOperandTopOfStack===%@", topOfStack);
     if( [topOfStack isKindOfClass:[NSNumber class]] )
     {
         result = [topOfStack doubleValue];
@@ -211,7 +215,7 @@
         {
             id replacement = [variableValues objectForKey:[stack objectAtIndex:i]];
             NSNumber *valueAsNumber = replacement;
-            if( valueAsNumber == nil ) valueAsNumber = 0;
+            if( valueAsNumber == nil ) valueAsNumber = [NSNumber numberWithDouble:0];
             
             [stack replaceObjectAtIndex:i withObject:valueAsNumber];
         }

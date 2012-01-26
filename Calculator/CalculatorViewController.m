@@ -123,6 +123,8 @@
     self.infixDisplay.text = @"";
     self.variableDisplay.text = @"";
     self.userIsInTheMiddleOfEnteringANumber = NO;
+    self.testVariables = nil;
+    [self.brain updateVariables:nil];
 }
 
 - (IBAction)undoPressed:(UIButton *)sender {
@@ -167,8 +169,8 @@
                             ,@"b", [self.testVariables objectForKey:@"b"]
                                     ];
     [self.brain updateVariables:self.testVariables];
-    double resultVal = [self.brain execute];
-    [self updateAfterExecutionForResult:resultVal];
+    //double resultVal = [self.brain execute];
+    //[self updateAfterExecutionForResult:resultVal];
 }
 
 - (void)viewDidUnload {
