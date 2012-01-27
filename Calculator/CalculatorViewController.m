@@ -8,14 +8,15 @@
 
 #import "CalculatorViewController.h"
 #import "CalculatorBrain.h"
+#import "GraphView.h"
 
-@interface CalculatorViewController()
+@interface CalculatorViewController() <GraphViewDataSource>
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
 @property (nonatomic, strong) CalculatorBrain *brain;
 @property (nonatomic, strong) NSDictionary *testVariables;
 @end
 
-@implementation CalculatorViewController
+@implementation CalculatorViewController 
 
 @synthesize display = _display;
 @synthesize historyDisplay = _historyDisplay;
@@ -125,6 +126,15 @@
     [self.brain updateVariables:nil];
 }
 
+
+-(double) yCoordinateForX:(double)x
+{
+    [self.brain pushVariable:@"x"];
+    
+    NSDictionary *variables = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:x],@"x", nil];
+    
+    return [CalculatorBrain runProgram:self.brain.program usingVariables:variables];
+}
 
 - (void)viewDidUnload {
     [self setHistoryDisplay:nil];

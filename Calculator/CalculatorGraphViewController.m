@@ -7,6 +7,11 @@
 //
 
 #import "CalculatorGraphViewController.h"
+#import "GraphView.h"
+
+@interface CalculatorGraphViewController() <GraphViewDataSource>
+
+@end
 
 @implementation CalculatorGraphViewController
 
@@ -15,6 +20,11 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self equationDisplay].text = @"Adam was here";
+}
+
+-(double) yCoordinateForX:(double)x
+{
+    return 30.0;
 }
 
 - (void)viewDidUnload {

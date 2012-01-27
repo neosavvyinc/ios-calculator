@@ -7,10 +7,13 @@
 //
 
 #import "CalculatorBrain.h"
+#import "GraphView.h"
 
 @interface CalculatorBrain()
+
 @property (nonatomic, strong) NSMutableArray *programStack;
 @property (nonatomic, strong) NSDictionary *variables;
+
 @end
 
 @implementation CalculatorBrain
