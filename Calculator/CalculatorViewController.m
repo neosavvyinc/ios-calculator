@@ -131,7 +131,7 @@
     
     
 }
-
+/*
 - (IBAction)testPressed:(UIButton *)sender {
     NSString *testButtonTitlePressed = sender.currentTitle;
     
@@ -169,9 +169,9 @@
                             ,@"b", [self.testVariables objectForKey:@"b"]
                                     ];
     [self.brain updateVariables:self.testVariables];
-    //double resultVal = [self.brain execute];
-    //[self updateAfterExecutionForResult:resultVal];
+    
 }
+*/
 
 - (void)viewDidUnload {
     [self setHistoryDisplay:nil];
