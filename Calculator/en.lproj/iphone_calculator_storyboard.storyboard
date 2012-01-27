@@ -365,7 +365,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XED-YY-W5E">
-                                <rect key="frame" x="164" y="341" width="136" height="37"/>
+                                <rect key="frame" x="164" y="340" width="136" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Graph">
@@ -376,7 +376,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="soX-MZ-Ux5" kind="push" id="mSj-wJ-U1B"/>
+                                    <action selector="graphButtonPressed:" destination="2" eventType="touchUpInside" id="7xm-pv-9RC"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -387,6 +387,7 @@
                         <outlet property="display" destination="Y2H-ih-yDP" id="9fQ-A1-BEr"/>
                         <outlet property="historyDisplay" destination="dGp-mK-M8a" id="RPb-k0-HA1"/>
                         <outlet property="infixDisplay" destination="Qer-fL-RGF" id="qkd-Dv-Ypj"/>
+                        <segue destination="soX-MZ-Ux5" kind="push" identifier="ShowGraph" id="bM1-JR-u4d"/>
                     </connections>
                 </viewController>
             </objects>
@@ -400,7 +401,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="GYA-Uf-whM" customClass="GraphView">
+                            <view contentMode="redraw" id="GYA-Uf-whM" customClass="GraphView">
                                 <rect key="frame" x="0.0" y="1" width="320" height="416"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -414,7 +415,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="soX-MZ-Ux5" id="1H3-pq-OUS"/>
+                                    <outlet property="dataSource" destination="soX-MZ-Ux5" id="d8q-Mv-jAK"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -423,6 +424,7 @@
                     <navigationItem key="navigationItem" id="idB-LO-Sk3"/>
                     <connections>
                         <outlet property="equationDisplay" destination="43w-7s-z5e" id="zlx-Mz-AJI"/>
+                        <outlet property="graphView" destination="GYA-Uf-whM" id="STG-Mw-gb7"/>
                         <outlet property="view" destination="qRX-1b-4Ac" id="edR-xf-il6"/>
                     </connections>
                 </viewController>
@@ -449,6 +451,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CalculatorGraphViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="equationDisplay" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="graphView" candidateClass="GraphView"/>
             </relationships>
         </class>
         <class className="CalculatorViewController" superclassName="UIViewController">

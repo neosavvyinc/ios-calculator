@@ -8,9 +8,9 @@
 
 #import "CalculatorViewController.h"
 #import "CalculatorBrain.h"
-#import "GraphView.h"
+#import "CalculatorGraphViewController.h"
 
-@interface CalculatorViewController() <GraphViewDataSource>
+@interface CalculatorViewController() 
 @property (nonatomic) BOOL userIsInTheMiddleOfEnteringANumber;
 @property (nonatomic, strong) CalculatorBrain *brain;
 @property (nonatomic, strong) NSDictionary *testVariables;
@@ -116,6 +116,19 @@
     [self updateAfterExecutionForResult:result];
 }
 
+- (IBAction)graphButtonPressed:(id)sender {
+    
+    [self performSegueWithIdentifier:@"ShowGraph" sender:self];
+    
+}
+
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if( [segue.identifier isEqualToString:@"ShowGraph"] ) {
+        [segue.destinationViewController setProgram:[self.brain program]];
+    }
+}
+
 - (IBAction)clearPressed:(id)sender {
     [self.brain clear];
     self.display.text = @"0";
@@ -124,16 +137,6 @@
     self.userIsInTheMiddleOfEnteringANumber = NO;
     self.testVariables = nil;
     [self.brain updateVariables:nil];
-}
-
-
--(double) yCoordinateForX:(double)x
-{
-    [self.brain pushVariable:@"x"];
-    
-    NSDictionary *variables = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:x],@"x", nil];
-    
-    return [CalculatorBrain runProgram:self.brain.program usingVariables:variables];
 }
 
 - (void)viewDidUnload {

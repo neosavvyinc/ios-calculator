@@ -11,5 +11,6 @@
 @interface CalculatorGraphViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *equationDisplay;
+@property (strong, nonatomic) NSMutableArray *program;
 
 @end
