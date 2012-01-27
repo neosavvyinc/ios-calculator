@@ -18,6 +18,7 @@
 		8C9D03E514C7C4D000058351 /* CalculatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D03E414C7C4D000058351 /* CalculatorViewController.m */; };
 		8C9D03ED14C7C77D00058351 /* CalculatorBrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9D03EC14C7C77D00058351 /* CalculatorBrain.m */; };
 		8CDCF5F314D2262500803D65 /* ipad_calculator_storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CDCF5F214D2262500803D65 /* ipad_calculator_storyboard.storyboard */; };
+		8CDCF5F614D22B7B00803D65 /* CalculatorGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CDCF5F514D22B7B00803D65 /* CalculatorGraphViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,8 @@
 		8C9D03EB14C7C77D00058351 /* CalculatorBrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorBrain.h; sourceTree = "<group>"; };
 		8C9D03EC14C7C77D00058351 /* CalculatorBrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorBrain.m; sourceTree = "<group>"; };
 		8CDCF5F214D2262500803D65 /* ipad_calculator_storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ipad_calculator_storyboard.storyboard; sourceTree = "<group>"; };
+		8CDCF5F414D22B7B00803D65 /* CalculatorGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorGraphViewController.h; sourceTree = "<group>"; };
+		8CDCF5F514D22B7B00803D65 /* CalculatorGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorGraphViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,8 @@
 		8C9D03D414C7C4D000058351 /* Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				8CDCF5F414D22B7B00803D65 /* CalculatorGraphViewController.h */,
+				8CDCF5F514D22B7B00803D65 /* CalculatorGraphViewController.m */,
 				8CDCF5F214D2262500803D65 /* ipad_calculator_storyboard.storyboard */,
 				8C9D03DD14C7C4D000058351 /* CalculatorAppDelegate.h */,
 				8C9D03DE14C7C4D000058351 /* CalculatorAppDelegate.m */,
@@ -180,6 +185,7 @@
 				8C9D03E514C7C4D000058351 /* CalculatorViewController.m in Sources */,
 				8C9D03ED14C7C77D00058351 /* CalculatorBrain.m in Sources */,
 				8C0F632614D21D9000A4F967 /* AxesDrawer.m in Sources */,
+				8CDCF5F614D22B7B00803D65 /* CalculatorGraphViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

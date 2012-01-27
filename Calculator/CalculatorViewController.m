@@ -19,7 +19,6 @@
 
 @synthesize display = _display;
 @synthesize historyDisplay = _historyDisplay;
-@synthesize variableDisplay = _variableDisplay;
 @synthesize infixDisplay = _infixDisplay;
 @synthesize userIsInTheMiddleOfEnteringANumber = _userIsInTheMiddleOfEnteringANumber;
 @synthesize brain = _brain;
@@ -121,61 +120,14 @@
     self.display.text = @"0";
     self.historyDisplay.text = @"";
     self.infixDisplay.text = @"";
-    self.variableDisplay.text = @"";
     self.userIsInTheMiddleOfEnteringANumber = NO;
     self.testVariables = nil;
     [self.brain updateVariables:nil];
 }
 
-- (IBAction)undoPressed:(UIButton *)sender {
-    
-    
-}
-/*
-- (IBAction)testPressed:(UIButton *)sender {
-    NSString *testButtonTitlePressed = sender.currentTitle;
-    
-    if( [@"Test 1" isEqualToString:testButtonTitlePressed] )
-    {
-        NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                              [NSNumber numberWithDouble:10], @"x"
-                              ,[NSNumber numberWithDouble:20],@"a"
-                              ,[NSNumber numberWithDouble:30], @"b"
-                              ,nil];
-        self.testVariables = dict;
-    }
-    else if( [@"Test 2" isEqualToString:testButtonTitlePressed] )
-    {
-        NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                              [NSNumber numberWithDouble:20],@"x"
-                              ,[NSNumber numberWithDouble:30],@"a"
-                              ,[NSNumber numberWithDouble:40],@"b"
-                              ,nil];
-        self.testVariables = dict;
-    }
-    else if( [@"Test 3" isEqualToString:testButtonTitlePressed] )
-    {
-        NSDictionary *dict = [[NSDictionary alloc] initWithObjectsAndKeys:
-                              [NSNumber numberWithDouble:30], @"x"
-                              ,[NSNumber numberWithDouble:40],@"a"
-                              ,[NSNumber numberWithDouble:50], @"b"
-                              ,nil];
-        self.testVariables = dict;        
-    }
-    
-    self.variableDisplay.text = [NSString stringWithFormat:@"%@=%@, %@=%@, %@=%@"
-                            ,@"x", [self.testVariables objectForKey:@"x"]
-                            ,@"a", [self.testVariables objectForKey:@"a"]                                    
-                            ,@"b", [self.testVariables objectForKey:@"b"]
-                                    ];
-    [self.brain updateVariables:self.testVariables];
-    
-}
-*/
 
 - (void)viewDidUnload {
     [self setHistoryDisplay:nil];
-    [self setVariableDisplay:nil];
     [self setInfixDisplay:nil];
     [super viewDidUnload];
 }

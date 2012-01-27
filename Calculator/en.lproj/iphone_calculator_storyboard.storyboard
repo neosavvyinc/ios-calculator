@@ -364,13 +364,6 @@
                                     <action selector="digitPressed:" destination="2" eventType="touchUpInside" id="rcA-qZ-3eH"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" minimumFontSize="10" id="ipV-tD-rFD">
-                                <rect key="frame" x="20" y="431" width="280" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XED-YY-W5E">
                                 <rect key="frame" x="164" y="341" width="136" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -394,7 +387,6 @@
                         <outlet property="display" destination="Y2H-ih-yDP" id="9fQ-A1-BEr"/>
                         <outlet property="historyDisplay" destination="dGp-mK-M8a" id="RPb-k0-HA1"/>
                         <outlet property="infixDisplay" destination="Qer-fL-RGF" id="qkd-Dv-Ypj"/>
-                        <outlet property="variableDisplay" destination="ipV-tD-rFD" id="Pw6-lN-sBv"/>
                     </connections>
                 </viewController>
             </objects>
@@ -403,22 +395,31 @@
         <scene sceneID="bqu-Im-zuK">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mZq-nB-KBj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="soX-MZ-Ux5" sceneMemberID="viewController">
+                <viewController id="soX-MZ-Ux5" customClass="CalculatorGraphViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qRX-1b-4Ac">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Graph view" lineBreakMode="tailTruncation" minimumFontSize="10" id="Jhk-hn-Xfs">
-                                <rect key="frame" x="104" y="202" width="87" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" minimumFontSize="10" id="Jhk-hn-Xfs">
+                                <rect key="frame" x="20" y="375" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" id="GYA-Uf-whM">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="idB-LO-Sk3"/>
+                    <connections>
+                        <outlet property="equationDisplay" destination="Jhk-hn-Xfs" id="fsY-xz-OAw"/>
+                        <outlet property="view" destination="qRX-1b-4Ac" id="edR-xf-il6"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="449" y="211"/>
@@ -438,17 +439,6 @@
             <point key="canvasLocation" x="-555" y="214"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="CalculatorViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CalculatorViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="display" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="historyDisplay" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="infixDisplay" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="variableDisplay" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
